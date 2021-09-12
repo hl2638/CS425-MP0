@@ -10,16 +10,21 @@ import (
 
 func main() {
 	args := os.Args[1:]
-	node := args[0]
-	address := args[1] + ":" + args[2]
-	fmt.Println(args)
-	fmt.Println("start")
+	node := "node"
+	address := "127.0.0.1:9999"
+	if len(args) > 0{
+		node = args[0]
+		address = args[1] + ":" + args[2]
+	}
+	//fmt.Println(args)
+	fmt.Println("Client " + node + " started.")
 	conn, err := net.Dial("tcp", address)
 	if err != nil {
 		fmt.Println("err: ", err)
 		return
 	}
 	defer conn.Close()
+	//defer fmt.Println("Close");
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		 str := strings.Split(scanner.Text(), " ")
