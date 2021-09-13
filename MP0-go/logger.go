@@ -41,9 +41,16 @@ func process(conn net.Conn) {
 }
 //var connMap map[string]bool
 func main() {
-	listen, err := net.Listen("tcp", "127.0.0.1:9999")
+	var port string
+	if len(os.Args) > 1{
+		port = os.Args[1]
+	}else{
+		port = "9999"
+	}
+	fmt.Println(port)
+	listen, err := net.Listen("tcp", "0.0.0.0:" + port)
 	//connMap = make(map[string]bool)
-		fmt.Println("Server started.")
+	fmt.Println("Server started.")
 	if err != nil {
 		fmt.Fprintln(os.Stderr,"listen() failed, err:", err)
 		return

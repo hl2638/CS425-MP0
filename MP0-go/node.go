@@ -31,6 +31,7 @@ func main() {
 		 output := str[0] + " " + node + " " + str[1] + "\n"
 		_, err = conn.Write([]byte(output))
 		//fmt.Fprintf(conn, stdin)
+		fmt.Println("To send: " + output)
 	}
 	//if err := scanner.Err(); err != nil {
 	//	log.Fatal(err)
