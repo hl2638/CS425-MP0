@@ -14,6 +14,8 @@ func main() {
 	address := "127.0.0.1:9999"
 	if len(args) > 0{
 		node = args[0]
+	}
+	if len(args) > 1{
 		address = args[1] + ":" + args[2]
 	}
 	//fmt.Println(args)
@@ -27,26 +29,11 @@ func main() {
 	//defer fmt.Println("Close");
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
+		//recvTime := float64(time.Now().UnixNano())/1000000000
 		 str := strings.Split(scanner.Text(), " ")
 		 output := str[0] + " " + node + " " + str[1] + "\n"
 		_, err = conn.Write([]byte(output))
 		//fmt.Fprintf(conn, stdin)
-		fmt.Println("To send: " + output)
+		//fmt.Printf("At time %.7f, To send: %s", recvTime, output)
 	}
-	//if err := scanner.Err(); err != nil {
-	//	log.Fatal(err)
-	//}
-	//
-	//_, err = conn.Write([]byte(stdin))
-	//if err != nil{
-	//	return
-	//}
-	//buf := [512]byte{}
-	//n, err := conn.Read(buf[:])
-	//fmt.Fprintf(conn, stdin)
-	//if err != nil{
-	//	fmt.Println("receive failed, err:", err)
-	//	return
-	//}
-	//fmt.Println(string(buf[:n]))
 }
