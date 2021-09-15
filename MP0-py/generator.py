@@ -18,5 +18,5 @@ else:
 event_count = 0
 while max_events is None or event_count < max_events:
     event_count += 1
-    print("%s %s" % (time.time(), sha256(urandom(20)).hexdigest()))
+    print("%.7f %s" % (time.time(), sha256(urandom(20)).hexdigest()))
     time.sleep(expovariate(rate))
